@@ -27,14 +27,14 @@
             "title": "TUF-GAMING-650B",
             "price": 90,
             "image": "img/650W.png",
-            "category": "Fuentes de Poder"
+            "category": "Fuentes"
         },
         {
             "id": 5,
             "title": "TUF-GAMING-550B",
             "price": 65,
             "image": "Img/550W.png",
-            "category": "Fuentes de Poder"
+            "category": "Fuentes"
         },
 
 
@@ -46,7 +46,7 @@
             "title": "ROG-STRIX-850G",
             "price": 139,
             "image": "Img/850W.png",
-            "category": "Fuentes de Poder"
+            "category": "Fuentes"
         },
         {
             "id": 7,
@@ -101,7 +101,7 @@
             "title": "ROG-THOR-1200P",
             "price": 309,
             "image": "Img/1200W.png",
-            "category": "Fuentes de Poder"
+            "category": "Fuentes"
         },
        
         {
@@ -125,7 +125,7 @@
             "title": "TUF-GAMING-750B",
             "price": 129,
             "image": "Img/750W.png",
-            "category": "Fuentes de Poder"
+            "category": "Fuentes"
         },
         {
             "id": 16,
