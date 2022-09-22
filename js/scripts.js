@@ -1,46 +1,46 @@
-const productoDOM = document.querySelector(".productos__center")
-const carritoDOM = document.querySelector(".carrito")
-const carritoCenter = document.querySelector(".carrito__center")
-const openCarrito = document.querySelector(".carrito__icon")
-const closeCarrito = document.querySelector(".close__carrito")
-const overlay = document.querySelector(".carrito__overlay")
-const carritoTotal = document.querySelector(".carrito__total")
-const clearCarritoBtn = document.querySelector(".clear__carrito")
-const itemTotales =document.querySelector(".item__total")
-const detalles = document.getElementById('detalles')
+const productoDOM = documento. querySelector(".productos__center")
+const carritoDOM = documento. querySelector(".carrito")
+const carritoCenter = documento. querySelector(".carrito__center")
+const openCarrito = documento. querySelector(".carrito__icon")
+const closeCarrito = documento. querySelector(".close__carrito")
+const overlay = documento. querySelector(".carrito__overlay")
+const carritoTotal = documento. querySelector(".carrito__total")
+const clearCarritoBtn = documento. querySelector(".clear__carrito")
+const itemTotales =document. querySelector(".item__total")
+const detalles = documento. getElementById('detalles')
 
-let carrito = [];
+dejar carrito = [];
 let buttonDOM = [];
 
-class UI {
+interfaz de usuario de clase {
 
 	detalleProducto(id){
-		const filtroDato = productos.filter(item => item.id == id)
-		let result = ""
-		filtroDato.forEach(producto => {
-			result += `
-			<article class="detalle-grid">
-				<img src=${producto.image} alt="${producto.title}" class="img-fluid">
+		const filtroDato = productos. filter(item = > elemento. id == id)
+		dejar resultado = ""
+		filtroDato. forEach(producto => {
+			resultado += `
+ <artículo clase="detalle-cuadrícula">
+ <img src=${producto. imagen} alt="${producto. title}" class="img-fluid">
 				<div class="detalles-content">
-					<h3>${producto.title}</h3>
+ <h3>${producto. título}</h3>
 					<div class="rating">
-						<span>
+ <spano>
 							<i class="bx bxs-star"></i>
 						</span>
-						<span>
+ <spano>
 							<i class="bx bxs-star"></i>
 						</span>
-						<span>
+ <spano>
 							<i class="bx bxs-star"></i>
 						</span>
-						<span>
+ <spano>
 							<i class="bx bxs-star"></i>
 						</span>
-						<span>
+ <spano>
 							<i class="bx bx-star"></i>
 						</span>
 					</div>
-						<p class="price"><b>Precio: </b> $${producto.price}</p>
+ <p class="price"><b>Precio: </b> $${producto. precio}</p>
 						<p class="description">
 							<b>Descripcion: </b> <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quae ad ex sint expedita perspiciatis odit eligendi! Et quia ex aperiam dolorum sunt omnis maiores. Repudiandae delectus iste exercitationem vel?</span>
 						</p>
@@ -49,87 +49,87 @@ class UI {
 						</p>
 						<div class="bottom">
 							<div class="btn__group">
-								<button class="btn addToCart" data-id=${producto.id}>Añadir carrito</button>
+ <button class="btn addToCart" data-id=${producto. id}>Añadir carrito</button>
 							</div>
 						</div>
 				</div>
-			</article>
+ </artículo>
 			`
 		});
-		detalles.innerHTML = result;
+		detalles. innerHTML = resultado;
 	}
 
 	renderProductos(productos){
-		let result = ""
-		productos.forEach((producto) =>{
-			result += `
+		dejar resultado = ""
+		productos. forEach((producto) =>{
+			resultado += `
 			<div class="producto">
 			<div class="image__container">
-			<img src=${producto.image} alt="">
+ <img src=${producto. imagen} alt="">
 		</div>
           <div class="producto__footer">
-            <h1>${producto.title}</h1>
+ <h1>${producto. título}</h1>
             <div class="rating">
-              <span>
+ <spano>
                 <i class="bx bxs-star"></i>
               </span>
-              <span>
+ <spano>
                 <i class="bx bxs-star"></i>
               </span>
-              <span>
+ <spano>
                 <i class="bx bxs-star"></i>
               </span>
-              <span>
+ <spano>
                 <i class="bx bxs-star"></i>
               </span>
-              <span>
+ <spano>
                 <i class="bx bx-star"></i>
               </span>
             </div>
-            <div class="price">$${producto.price}</div>
+ <div class="price">$${producto. precio}</div>
           </div>
           <div class="bottom">
             <div class="btn__group">
-              <button class="btn addToCart" data-id=${producto.id}>Añadir carrito</button>
-              <a href="producto-detalles.html?id=${producto.id}" class="btn view">Vista</a>
+ <button class="btn addToCart" data-id=${producto. id}>Añadir carrito</button>
+ <a href="producto-detalles.html?id=${producto. id}" class="btn view">Vista</a>
             </div>
           </div>
         </div>
 				`
 		});
-		productoDOM.innerHTML = result
+		productoDOM. innerHTML = resultado
 	}
 
 	getButtons(){
-		const buttons = [...document.querySelectorAll(".addToCart")];
-		buttonDOM = buttons;
-		buttons.forEach((button)=> {
-			const id = button.dataset.id;
-			const inCart = carrito.find(item => item.id === parseInt(id, 10));
+		const botones = [... documento. querySelectorAll(".addToCart")];
+		buttonDOM = botones;
+		botones. forEach((botón)=> {
+			const id = botón. conjunto de datos. identificación;
+			const inCart = carrito. find(item = > elemento. id === parseInt(id, 10));
 
 			if(inCart){
-				button.innerHTML = "En el carrito";
-				button.disabled = true;
+				botón. innerHTML = "En el carrito";
+				botón. deshabilitado = verdadero;
 			}
-			button.addEventListener("click", e =>{
-				e.preventDefault();
-				e.target.innerHTML = "En el carrito";
-				e.target.disabled = true;
+			botón. addEventListener("click", e =>{
+				e. preventDefault();
+				e. objetivo. innerHTML = "En el carrito";
+				e. objetivo. deshabilitado = verdadero;
 				
 
-				// GET productos al carrito
-				const carritoItem = {...Storage.getProductos(id), cantidad: 1}
+				GET productos al carrito
+				const carritoItem = {... Almacenamiento. getProductos(id), cantidad: 1}
 
-				//agregamos el producto al carrito
-				carrito = [...carrito, carritoItem]
+				agregamos el producto al carrito
+				carrito = [... carrito, carritoItem]
 
-				//Guardamos el carrito al localstorage
-				Storage.saveCart(carrito)
+				Guardamos el carrito al localstorage
+				Almacenamiento. saveCart(carrito)
 
-				//Set cart values
-				this.setItemValues(carrito)
-				this.addCarritoItem(carritoItem)
-				//Show al carrito
+				Establecer valores de carrito
+				esto. setItemValues(carrito)
+				esto. addCarritoItem(carritoItem)
+				Mostrar al carrito
 			})
 		})
 	}
@@ -137,22 +137,22 @@ class UI {
 	setItemValues(carrito){
 		let tempTotal = 0;
 		let itemTotal = 0;
-		carrito.map(item => {
-			tempTotal += item.price * item.cantidad;
-			itemTotal += item.cantidad;
+		carrito. mapa(elemento => {
+			tempTotal += elemento. precio * artículo. cantidad;
+			itemTotal += item. cantidad;
 		});
-		carritoTotal.innerText = parseFloat(tempTotal.toFixed(2));
-		itemTotales.innerText = itemTotal
+		carritoTotal. innerText = parseFloat(tempTotal. toFixed(2));
+		itemTotales. innerText = itemTotal
 	}
 
-	addCarritoItem({image, price, title, id}){
-		const div = document.createElement("div")
-		div.classList.add("carrito__item")
+	addCarritoItem({imagen, precio, título, id}){
+		const div = documento. createElement("div")
+		div. classList. add("carrito__item")
 
-		div.innerHTML = `
+		div. innerHTML = `
 		<img src=${image} alt=${title}>
 		<div>
-			<h3>${title}</h3>
+ <h3>${título}</h3>
 			<p class="price">$${price}</p>
 		</div>
 		<div>
@@ -170,29 +170,29 @@ class UI {
 			</span>
 		</div>
 		`
-		carritoCenter.appendChild(div)
+		carritoCenter. appendChild(div)
 	}
-	show(){
-		carritoDOM.classList.add("show")
-		overlay.classList.add("show")
+	mostrar(){
+		carritoDOM. classList. add("mostrar")
+		superposición. classList. add("mostrar")
 	}
-	hide(){
-		carritoDOM.classList.remove("show")
-		overlay.classList.remove("show")
+	esconder(){
+		carritoDOM. classList. remove("mostrar")
+		superposición. classList. remove("mostrar")
 	}
 	setAPP(){
-		carrito = Storage.getCart()
-		this.setItemValues(carrito)
-		this.populate(carrito)
-		openCarrito.addEventListener("click", this.show)
-		closeCarrito.addEventListener("click", this.hide)
+		carrito = Almacenamiento. getCart()
+		esto. setItemValues(carrito)
+		esto. populate(carrito)
+		openCarrito. addEventListener("click",, esto. mostrar)
+		cerrarCarrito. addEventListener("click",, esto. esconder)
 	}
 	populate(carrito){
-		carrito.forEach(item => this.addCarritoItem(item))
+		carrito. forEach(item => esto. addCarritoItem(elemento))
 	}
 	cartLogic(){
-		clearCarritoBtn.addEventListener("click", () =>{
-			this.clearCarrito()
+		clearCarritoBtn. addEventListener("clic", () =>{
+			esto. clearCarrito()
 			this.hide()
 		});
 
@@ -230,96 +230,96 @@ class UI {
 		});
 	}
 	clearCarrito(){
-		const cartItems = carrito.map(item => item.id)
-		cartItems.forEach(id => this.removeItem(id))
+		const cartItems = carrito. map(item = > elemento. identificación)
+		cartItems. forEach(id => esto. removeItem(id))
 
-		while(carritoCenter.children.length > 0){
-			carritoCenter.removeChild(carritoCenter.children[0])
+		while(carritoCenter. niños. longitud > 0){
+			carritoCenter. removeChild(carritoCenter. niños[0])
 		}
 	}
 	removeItem(id){
-		carrito = carrito.filter(item => item.id !== id);
-		this.setItemValues(carrito)
-		Storage.saveCart(carrito)
-		let button = this.singleButton(id);
-		if(button){
-			button.disabled = false;
-			button.innerText = "Añadir carrito"
+		carrito = carrito. filter(item = > elemento. id !== id);
+		esto. setItemValues(carrito)
+		Almacenamiento. saveCart(carrito)
+		let button = esto. singleButton(id);
+		if(botón){
+			botón. deshabilitado = falso;
+			botón. innerText = "Añadir carrito"
 		}
 	}
 	singleButton(id){
-		return buttonDOM.find(button => parseInt(button.dataset.id) === id)
+		botón de retornoDOM. find(button => parseInt(button. conjunto de datos. id) === id)
 	}
 }
 
 
 
-class Storage {
-	static saveProduct(obj){
-		localStorage.setItem("productos", JSON.stringify(obj))
+clase Almacenamiento {
+	 static saveProduct(obj){
+		localStorage. setItem("productos", JSON. stringify(obj))
 	}
 	static saveCart(carrito){
-		localStorage.setItem("carrito", JSON.stringify(carrito))
+		localStorage. setItem("carrito", JSON. stringify(carrito))
 	}
 	static getProductos(id){
-		const producto = JSON.parse(localStorage.getItem("productos"))
-		return producto.find(product =>product.id === parseFloat(id, 10))
+		const producto = JSON. parse(localStorage. getItem("productos"))
+		devolver producto. find(product =>product. id === parseFloat(id, 10))
 	}
-	static getCart(){
-		return localStorage.getItem("carrito") ? JSON.parse(localStorage.getItem("carrito")) : [];
+	getCart estático(){
+		return localStorage. getItem("carrito") ? JSON. parse(localStorage. getItem("carrito")) : [];
 	}
 }
 
-class Productos {
+clase Productos {
   async getProductos() {
-    try {
-			const result = await fetch ("productos.json")
-			const data = await result.json()
-			const productos = data.items
-			return productos
+    probar {
+			const result = await fetch("productos.json")
+			const data = espera el resultado. json()
+			const productos = datos. Artículos
+			productos de devolución 
 		}catch(err){
-			console.log(err)
+			consola. log(err)
 		}
   }
 }
 
-let category = "";
-let productos  = [];
+dejar categoría = "";
+dejar productos  = [];
 
-function categoryValue(){
-	const ui = new UI();
+categoría de funciónValor(){
+	const ui = nueva interfaz de usuario();
 
-	category = document.getElementById("category").value
-	if(category.length > 0){
-		const producto = productos.filter(regx => regx.category === category)
-		ui.renderProductos(producto)
-		ui.getButtons();
-	}else{
-		ui.renderProductos(productos)
-		ui.getButtons();
+	categoría = documento. getElementById("categoría"). valor
+	if(categoría. longitud > 0){
+		const producto = productos. filter(regx = > regx. categoría === categoría)
+		ui. renderProductos(producto)
+		ui. getButtons();
+	}más{
+		ui. renderProductos(productos)
+		ui. getButtons();
 	
 	}
 }
 
-const query = new URLSearchParams(window.location.search)
-let id = query.get('id')
+const query = new URLSearchParams(window. ubicación. buscar)
+let id = consulta. get('id')
 
-document.addEventListener("DOMContentLoaded", async () =>{
-	const productosLista = new Productos();
-	const ui = new UI();
+documento. addEventListener("DOMContentLoaded",, asincrónico () =>{
+	const productosLista = nuevos Productos();
+	const ui = nueva interfaz de usuario();
 
-	ui.setAPP()
+	ui. setAPP()
 
-	productos = await productosLista.getProductos()
+	productos = espera productosLista. getProductos()
 	if(id){
-		ui.detalleProducto(id)
-		Storage.saveProduct(productos)
-		ui.getButtons();
-		ui.cartLogic();
-	}else{
-		ui.renderProductos(productos)
-		Storage.saveProduct(productos)
-		ui.getButtons();
-		ui.cartLogic();
+		ui. detalleProducto(id)
+		Almacenamiento. saveProduct(productos)
+		ui. getButtons();
+		ui. cartLogic();
+	}más{
+		ui. renderProductos(productos)
+		Almacenamiento. saveProduct(productos)
+		ui. getButtons();
+		ui. cartLogic();
 	}
 })
