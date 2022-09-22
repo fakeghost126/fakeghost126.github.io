@@ -349,13 +349,6 @@
             "price": 59,
             "image": "img/DE710.jpg",
             "category": "disco duro"
-        },
-        {
-            "id": 16,
-            "title": "disco duro M.2",
-            "price": 118,
-            "image": "img/650W.png",
-            "category": "disco duro"
         }
 
     
